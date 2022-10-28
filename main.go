@@ -12,12 +12,12 @@ import (
 )
 
 var (
-	app         string = "tls-cert-test"
-	version     string = "unknown"
-	description string = "Simple HTTP server to test TLS protocol versions and certificates"
-	site        string = "https://github.com/dassump/tls-cert-test"
-	info        string = "%s (%s)\n\n%s\n%s\n\n"
-	usage       string = "Usage of %s:\n"
+	app         = "tls-cert-test"
+	version     = "unknown"
+	description = "Simple HTTP server to test TLS protocol versions and certificates"
+	site        = "https://github.com/dassump/tls-cert-test"
+	info        = "%s (%s)\n\n%s\n%s\n\n"
+	usage       = "Usage of %s:\n"
 
 	pem  = flag.String("pem", "certificate.pem", "Certificate PEM file")
 	key  = flag.String("key", "certificate.key", "Certificate KEY file")
