@@ -30,4 +30,7 @@ compile:
 	CGO_ENABLED=$(GOCGO) GOOS=darwin  GOARCH=amd64 $(GOCMD) build $(LDFLAGS) -o build/$(APP)-darwin-amd64      .
 	CGO_ENABLED=$(GOCGO) GOOS=darwin  GOARCH=arm64 $(GOCMD) build $(LDFLAGS) -o build/$(APP)-darwin-arm64      .
 
+cert:
+	openssl req -newkey rsa:2048 -nodes -keyout certificate.key -x509 -days 365 -out certificate.pem -subj "/C=XX/ST=XX/L=XX/O=$(APP)/OU=XX/CN=$(APP).local"
+
 default: modules clean fmt compile;
