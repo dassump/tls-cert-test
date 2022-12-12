@@ -5,11 +5,9 @@ VERSION := $(shell git describe --tags)
 VERSION := $(if $(VERSION:-=),$(VERSION),unknown)
 
 GOCMD   := $(shell which go)
-GOROOT  := $(shell $(GOCMD) env GOROOT)
-GOPATH  := $(shell $(GOCMD) env GOPATH)
 GOCGO   := 0
 
-LDFLAGS    = -ldflags "-s -w -X main.version=$(VERSION)"
+LDFLAGS   := -ldflags "-s -w -X main.version=$(VERSION)"
 MAKEFLAGS += --silent
 
 modules:
@@ -31,6 +29,13 @@ compile:
 	CGO_ENABLED=$(GOCGO) GOOS=darwin  GOARCH=arm64 $(GOCMD) build $(LDFLAGS) -o build/$(APP)-darwin-arm64      .
 
 cert:
-	openssl req -newkey rsa:2048 -nodes -keyout certificate.key -x509 -days 365 -out certificate.pem -subj "/C=XX/ST=XX/L=XX/O=$(APP)/OU=XX/CN=$(APP).local"
+	openssl req \
+	-newkey rsa:2048 \
+	-nodes \
+	-keyout certificate.key \
+	-x509 \
+	-days 365 \
+	-out certificate.pem \
+	-subj "/C=XX/ST=XX/L=XX/O=$(APP)/OU=XX/CN=$(APP).local"
 
 default: modules clean fmt compile;

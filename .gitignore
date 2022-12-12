@@ -46,3 +46,8 @@ __debug_bin
 
 # Keep
 !.keep
+
+# Certificates
+*.[Kk][Ee][Yy]
+*.[Pp][Ee][Mm]
+*.[Cc][Rr][Tt]
